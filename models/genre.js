@@ -8,7 +8,7 @@ var GenreInstanceSchema = new Schema({
 
 // Virtual for book's URL
 GenreInstanceSchema.virtual('url').get(function () {
-  return '/catalog/genre/' + this._id;
+  return '/genre/' + this._id;
 });
 
 //Export model

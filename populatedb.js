@@ -58,7 +58,7 @@ function genreCreate(name, cb) {
   });
 }
 
-function movieCreate(title, summary, year, genre, imageUrl, cb) {
+function movieCreate(title, summary, year, genre, imageUrl = '', cb) {
   moviedetail = {
     title: title,
     summary: summary,
@@ -104,58 +104,58 @@ function createGenres(cb) {
 }
 
 function createMovies(cb) {
-  async.parallel(
+  async.series(
     [
       function (callback) {
         movieCreate(
           'Avengers: Endgame',
           null,
           2019,
-          null, //[genres[0]],
+          [genres[0], genres[1]],
           'https://images-na.ssl-images-amazon.com/images/I/81V1KTnYKwL._SL1371_.jpg',
           callback
         );
+      },
+      function (callback) {
+        movieCreate(
+          'Avengers: Infinity War',
+          null,
+          2018,
+          [genres[0], genres[1]],
+          'https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_UY1200_CR90,0,630,1200_AL_.jpg',
+          callback
+        );
+      },
+      function (callback) {
+        movieCreate(
+          'I am Legend',
+          null,
+          2007,
+          [genres[3]],
+          'https://irs.www.warnerbros.com/keyart-jpeg/movies/media/browser/i_am_legend_key_art.jpg',
+          callback
+        );
+      },
+      function (callback) {
+        movieCreate(
+          'Forest Gump',
+          'Life is like a box of chocolates',
+          null,
+          [genres[4]],
+          undefined,
+          callback
+        );
+      },
+      function (callback) {
+        movieCreate(
+          'Teen Titans Go to the Movies',
+          null,
+          2018,
+          [genres[4]],
+          'https://upload.wikimedia.org/wikipedia/en/thumb/c/ca/TTG_Movie_Poster_5.jpg/220px-TTG_Movie_Poster_5.jpg',
+          callback
+        );
       }
-      // function (callback) {
-      //   movieCreate(
-      //     'Avengers: Infinity War',
-      //     null,
-      //     2018,
-      //     [genres[0], genres[1]],
-      //     'https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_UY1200_CR90,0,630,1200_AL_.jpg',
-      //     callback
-      //   );
-      // },
-      // function (callback) {
-      //   movieCreate(
-      //     'I am Legend',
-      //     null,
-      //     2007,
-      //     [genres[3]],
-      //     'https://irs.www.warnerbros.com/keyart-jpeg/movies/media/browser/i_am_legend_key_art.jpg',
-      //     callback
-      //   );
-      // },
-      // function (callback) {
-      //   movieCreate(
-      //     'Forest Gump',
-      //     'Life is like a box of chocolates',
-      //     null,
-      //     [genres[4]],
-      //     null,
-      //     callback
-      //   );
-      // },
-      // function (callback) {
-      //   movieCreate(
-      //     'Teen Titans Go to the Movies',
-      //     null,
-      //     2018,
-      //     [genres[4]],
-      //     'https://upload.wikimedia.org/wikipedia/en/thumb/c/ca/TTG_Movie_Poster_5.jpg/220px-TTG_Movie_Poster_5.jpg',
-      //     callback
-      //   );
-      // }
     ],
     // optional callback
     cb
