@@ -4,13 +4,13 @@ block content
 
   h3 #{genres}
 
-  form(action='/add_movie', method='POST')
+  form(action=`/catalog/movie/${movie.id}`, method='POST')
     p
       | Title: 
       input(type='text', name='title', value=movie.title)
       br
       | Year: 
-      input(type='number', name='year', value=movie.year)
+      input(type='number', name='year', min=1900, max=2025, value=movie.year)
       br
       | Summary: 
       input(type='text', name='summary', value=movie.summary)
