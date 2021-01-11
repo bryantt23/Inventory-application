@@ -17,7 +17,13 @@ ul {
   list-style: none;
 }
 
+/* https://stackoverflow.com/questions/8919682/remove-all-styling-formatting-from-hyperlinks */
 a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
+}
+
+.active-hyperlink {
+  color: blue;
+  text-decoration: none; /* no underline */
 }

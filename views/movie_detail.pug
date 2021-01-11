@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1 #{title}: #{movie.title}
+  img(src=movie.imageUrl class='movie-pic')
+
+  p #[strong Summary:] #{movie.summary}
+  p #[strong Year:] #{movie.year}
+  p #[strong Genre:]
+    each val, index in movie.genre
+      span(href=val.url) #{val.name}
+      if index < movie.genre.length - 1
+        |,
+
+  div(style='margin-left:20px;margin-top:20px')
+    hr
+    p
+      a(href=movie.url+'/delete' class='active-hyperlink') Delete Movie
+    p
+      a(href=movie.url+'/update' class='active-hyperlink') Update Movie

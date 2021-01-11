@@ -151,7 +151,7 @@ function createMovies(cb) {
           'Teen Titans Go to the Movies',
           null,
           2018,
-          [genres[4]],
+          [genres[2]],
           'https://upload.wikimedia.org/wikipedia/en/thumb/c/ca/TTG_Movie_Poster_5.jpg/220px-TTG_Movie_Poster_5.jpg',
           callback
         );
