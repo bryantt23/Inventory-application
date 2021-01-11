@@ -111,7 +111,7 @@ function createMovies(cb) {
           'Avengers: Endgame',
           null,
           2019,
-          [genres[0], genres[1]],
+          genres[0],
           'https://images-na.ssl-images-amazon.com/images/I/81V1KTnYKwL._SL1371_.jpg',
           callback
         );
@@ -121,7 +121,7 @@ function createMovies(cb) {
           'Avengers: Infinity War',
           null,
           2018,
-          [genres[0], genres[1]],
+          genres[1],
           'https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_UY1200_CR90,0,630,1200_AL_.jpg',
           callback
         );
@@ -131,7 +131,7 @@ function createMovies(cb) {
           'I am Legend',
           null,
           2007,
-          [genres[3]],
+          genres[3],
           'https://irs.www.warnerbros.com/keyart-jpeg/movies/media/browser/i_am_legend_key_art.jpg',
           callback
         );
@@ -141,7 +141,7 @@ function createMovies(cb) {
           'Forest Gump',
           'Life is like a box of chocolates',
           null,
-          [genres[4]],
+          genres[4],
           undefined,
           callback
         );
@@ -151,7 +151,7 @@ function createMovies(cb) {
           'Teen Titans Go to the Movies',
           null,
           2018,
-          [genres[2]],
+          genres[2],
           'https://upload.wikimedia.org/wikipedia/en/thumb/c/ca/TTG_Movie_Poster_5.jpg/220px-TTG_Movie_Poster_5.jpg',
           callback
         );

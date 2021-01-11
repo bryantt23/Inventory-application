@@ -17,4 +17,10 @@ router.get('/movie/:id/delete', movie_controller.movie_delete_get);
 // POST request to delete Movie.
 router.post('/movie/:id/delete', movie_controller.movie_delete_post);
 
+// GET request to update Movie.
+router.get('/movie/:id/update', movie_controller.movie_update_get);
+
+// // POST request to update Movie.
+// router.post('/movie/:id/update', movie_controller.movie_update_post);
+
 module.exports = router;

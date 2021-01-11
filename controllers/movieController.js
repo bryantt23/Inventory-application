@@ -7,7 +7,7 @@ const { movie, validationResult } = require('express-validator');
 
 // Display list of all Movies.
 exports.movie_list = function (req, res, next) {
-  Movie.find({}, 'title summary year imageUrl')
+  Movie.find({}, 'title summary year imageUrl genre')
     .populate('genre')
     .exec(function (err, list_movies) {
       if (err) {
@@ -99,6 +99,52 @@ exports.movie_delete_post = function (req, res, next) {
         }
         // Success - go to movies list
         res.redirect('/catalog/movies');
+      });
+    }
+  );
+};
+
+// Display detail page for a specific movie.
+exports.movie_update_get = function (req, res, next) {
+  async.parallel(
+    {
+      movie: function (callback) {
+        Movie.findById(req.params.id).populate('genre').exec(callback);
+      },
+      genres: function (callback) {
+        Genre.find({})
+          .sort([['name', 'ascending']])
+          .exec(callback);
+      }
+    },
+
+    // Genre.find()
+    //   .sort([['name', 'ascending']])
+    //   .exec(function (err, list_genres) {
+    //     if (err) {
+    //       return next(err);
+    //     }
+    //     //Successful, so render
+    //     res.render('genre_list', {
+    //       title: 'Genre List',
+    //       genre_list: list_genres
+    //     });
+    //   });
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      if (results.movie == null) {
+        // No results.
+        var err = new Error('Movie not found');
+        err.status = 404;
+        return next(err);
+      }
+      // Successful, so render.
+      res.render('movie_update', {
+        title: results.movie.title,
+        movie: results.movie,
+        genres: results.genres
       });
     }
   );

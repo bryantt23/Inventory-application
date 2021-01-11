@@ -7,24 +7,15 @@ var MovieSchema = new Schema({
   summary: { type: String },
   year: { type: Number, min: 1900, max: 2025 },
   genre: {
-    type: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Genre'
-      }
-    ],
-    validate: [arrayLimit, '{PATH} has incorrect number of genres']
+    type: Schema.Types.ObjectId,
+    ref: 'Genre',
+    required: true
   },
   imageUrl: {
     type: String,
     default: ''
   }
 });
-
-// https://stackoverflow.com/questions/28514790/how-to-set-limit-for-array-size-in-mongoose-schema
-function arrayLimit(val) {
-  return val.length >= 1 && val.length <= 5;
-}
 
 // https://stackoverflow.com/questions/47134609/how-to-store-url-value-in-mongoose-schema
 MovieSchema.path('imageUrl').validate(val => {

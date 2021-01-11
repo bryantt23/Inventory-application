@@ -12,11 +12,7 @@ block content
           p #{movie.summary}
           p #{movie.year}
           img(src=movie.imageUrl class='movie-pic')
-          p #[strong Genre:]
-              each val, index in movie.genre
-                  span(text=val.name) #{val.name}
-                  if index < movie.genre.length - 1
-                      |,
+          p #[strong Genre:] #{movie.genre.name} 
 
     else
       li There are no books.

@@ -6,13 +6,9 @@ block content
   p Do you really want to delete this Movie?
   img(src=movie.imageUrl class='movie-pic')
 
-  p #[strong Summary:] #{movie.summary} #{movie.id}
+  p #[strong Summary:] #{movie.summary}
   p #[strong Year:] #{movie.year}
-  p #[strong Genre:]
-    each val, index in movie.genre
-      span(href=val.url) #{val.name}
-      if index < movie.genre.length - 1
-        |,
+  p #[strong Genre:] #{movie.genre.name}
 
   form(method='POST' action='')
     div.form-group

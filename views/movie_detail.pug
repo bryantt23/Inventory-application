@@ -6,11 +6,7 @@ block content
 
   p #[strong Summary:] #{movie.summary}
   p #[strong Year:] #{movie.year}
-  p #[strong Genre:]
-    each val, index in movie.genre
-      span(href=val.url) #{val.name}
-      if index < movie.genre.length - 1
-        |,
+  p #[strong Genre:] #{movie.genre.name}
 
   div(style='margin-left:20px;margin-top:20px')
     hr
