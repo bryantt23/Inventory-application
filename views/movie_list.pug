@@ -3,19 +3,14 @@ extends layout
 block content
   h1= title
 
-  #{movie_list}
   ul
     - movie_list.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
     each movie in movie_list
-      li
+      li(class='movie-section')
         h3 #{movie.title}
-        p #{movie}
-        p genre #{movie.genre}
         p #{movie.summary}
         p #{movie.year}
-        img(src=movie.imageUrl)
-        //- a(href=movie.imageUrl) 
-        //- |  (#{movie.genre.})
+        img(src=movie.imageUrl class='movie-pic')
         p #[strong Genre:]
             each val, index in movie.genre
                 a(href=val.url) #{val.name}

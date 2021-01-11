@@ -1,8 +1,17 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.movie-pic {
+  max-height: 300px;
+}
+
+.movie-section {
+  border-style: solid;
+  border-width: 2px;
+}
+
+ul {
+  list-style: none;
 }
