@@ -192,3 +192,78 @@ exports.movie_update_post = [
     }
   }
 ];
+
+// Display movie create form on GET.
+exports.movie_create_get = function (req, res, next) {
+  // Get all authors and genres, which we can use for adding to our book.
+  async.parallel(
+    {
+      genres: function (callback) {
+        Genre.find(callback);
+      }
+    },
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      res.render('movie_form', {
+        title: 'Create Movie',
+        genres: results.genres
+      });
+    }
+  );
+};
+
+// I copied & pasted from the update and just deleted the Id
+// let's see if this works...
+
+// Handle movie create on POST.
+exports.movie_create_post = [
+  // Validate and sanitise fields.
+  body('title', 'Title must not be empty.')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('year', 'Year must be must be between 1900 and 2025')
+    .isDecimal({ min: 1900, max: 2025 })
+    .escape(),
+  body('summary').isString().escape(),
+  body('imageurl').isString(),
+  body('genres').escape(),
+
+  // Process request after validation and sanitization.
+  (req, res, next) => {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create a Book object with escaped/trimmed data and old id.
+    var movie = new Movie({
+      title: req.body.title,
+      year: req.body.year,
+      summary: req.body.summary,
+      imageUrl: req.body.imageurl,
+      genre: req.body.genres
+    });
+
+    if (!errors.isEmpty()) {
+      // There are errors. Render form again with sanitized values/error messages.
+
+      // Get all authors and genres for form.
+      async.parallel(function (err, results) {
+        if (err) {
+          return next(err);
+        }
+      });
+      return;
+    } else {
+      // Data from form is valid. Save book.
+      movie.save(function (err) {
+        if (err) {
+          return next(err);
+        }
+        //successful - redirect to new book record.
+        res.redirect(movie.url);
+      });
+    }
+  }
+];

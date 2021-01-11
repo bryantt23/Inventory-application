@@ -3,6 +3,8 @@ extends layout
 block content
   h1= title
 
+  a(href='/catalog/movie/create' class='active-hyperlink') Add a movie
+
   ul
     - movie_list.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
     each movie in movie_list

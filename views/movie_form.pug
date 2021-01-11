@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+  h3 Update this movie
+
+  form(action=`/catalog/movie/create`, method='POST')
+    p
+      | Title: 
+      input(type='text', name='title', value='Add movie title')
+      br
+      | Year: 
+      input(type='number', name='year', min=1900, max=2025, value=2020)
+      br
+      | Summary: 
+      input(type='text', name='summary', value='Add movie summary')
+      br
+      | Image URL: 
+      input(type='text', name='imageurl', value='')
+      br
+      select(name="genres")
+          each genre in genres
+              option(value=genre.id  ) #{genre.name}
+
+    input(type='submit', value='Submit')

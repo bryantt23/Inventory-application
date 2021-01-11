@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-  h3 #{genres}
+  h3 Update this movie
 
   form(action=`/catalog/movie/${movie.id}`, method='POST')
     p
@@ -15,7 +15,7 @@ block content
       | Summary: 
       input(type='text', name='summary', value=movie.summary)
       br
-      | Image url: 
+      | Image URL: 
       input(type='text', name='imageurl', value=movie.imageUrl)
       br
       select(name="genres")
@@ -40,3 +40,7 @@ block content
       a(href=movie.url+'/update' class='active-hyperlink') Update Movie
     p
       a(href='/catalog/movies' class='active-hyperlink') See All Movies
+    p  
+      a(href='/catalog/movie/create' class='active-hyperlink') Add a movie
+
+      

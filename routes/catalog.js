@@ -5,6 +5,12 @@ var router = express.Router();
 var movie_controller = require('../controllers/movieController');
 // var genre_controller = require('../controllers/genreController');
 
+// GET request for creating a Movie. NOTE This must come before routes that display Book (uses id).
+router.get('/movie/create', movie_controller.movie_create_get);
+
+// POST request for creating Movie.
+router.post('/movie/create', movie_controller.movie_create_post);
+
 // GET request for list of all Movie items.
 router.get('/movies', movie_controller.movie_list);
 
