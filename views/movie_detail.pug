@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1 #{title}: #{movie.title}
+  h1 #{title}
   img(src=movie.imageUrl class='movie-pic')
 
   p #[strong Summary:] #{movie.summary}
@@ -14,3 +14,5 @@ block content
       a(href=movie.url+'/delete' class='active-hyperlink') Delete Movie
     p
       a(href=movie.url+'/update' class='active-hyperlink') Update Movie
+    p
+      a(href='/catalog/movies' class='active-hyperlink') See All Movies

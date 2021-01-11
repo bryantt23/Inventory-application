@@ -15,4 +15,7 @@ block content
       input#movieid.form-control(type='hidden',name='movieid', required='true', value=movie._id )
 
     button.btn.btn-primary(type='submit') Delete 
-    a(href=("/catalog/movie/"+movie.id) class='active-hyperlink') Cancel
+    p
+      a(href=("/catalog/movie/"+movie.id) class='active-hyperlink') Cancel
+    p
+      a(href='/catalog/movies' class='active-hyperlink') See All Movies

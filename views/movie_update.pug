@@ -18,7 +18,12 @@ block content
       | Image url: 
       input(type='text', name='imageurl', value=movie.imageUrl)
       br
+      select(name="genres")
+          each genre in genres
+              option(value=genre.id selected=(movie.genre._id == genre.id) ) #{genre.name}
+
     input(type='submit', value='Submit')
+
 
   h1 #{title}: 
   img(src=movie.imageUrl class='movie-pic')
@@ -33,3 +38,5 @@ block content
       a(href=movie.url+'/delete' class='active-hyperlink') Delete Movie
     p
       a(href=movie.url+'/update' class='active-hyperlink') Update Movie
+    p
+      a(href='/catalog/movies' class='active-hyperlink') See All Movies
