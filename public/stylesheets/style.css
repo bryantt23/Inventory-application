@@ -10,8 +10,14 @@ body {
 .movie-section {
   border-style: solid;
   border-width: 2px;
+  width: 50%;
 }
 
 ul {
   list-style: none;
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
 }

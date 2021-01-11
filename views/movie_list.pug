@@ -6,16 +6,17 @@ block content
   ul
     - movie_list.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
     each movie in movie_list
-      li(class='movie-section')
-        h3 #{movie.title}
-        p #{movie.summary}
-        p #{movie.year}
-        img(src=movie.imageUrl class='movie-pic')
-        p #[strong Genre:]
-            each val, index in movie.genre
-                a(href=val.url) #{val.name}
-                if index < movie.genre.length - 1
-                    |,
+      li(class='movie-section')      
+        a(href=movie.url)
+          h3 #{movie.title}
+          p #{movie.summary}
+          p #{movie.year}
+          img(src=movie.imageUrl class='movie-pic')
+          p #[strong Genre:]
+              each val, index in movie.genre
+                  span(text=val.name) #{val.name}
+                  if index < movie.genre.length - 1
+                      |,
 
     else
       li There are no books.
