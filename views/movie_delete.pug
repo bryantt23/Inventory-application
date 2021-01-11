@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1 #{title}: #{movie.name}
+
+  p Do you really want to delete this Movie?
+  img(src=movie.imageUrl class='movie-pic')
+
+  p #[strong Summary:] #{movie.summary} #{movie.id}
+  p #[strong Year:] #{movie.year}
+  p #[strong Genre:]
+    each val, index in movie.genre
+      span(href=val.url) #{val.name}
+      if index < movie.genre.length - 1
+        |,
+
+  form(method='POST' action='')
+    div.form-group
+      input#movieid.form-control(type='hidden',name='movieid', required='true', value=movie._id )
+
+    button.btn.btn-primary(type='submit') Delete 
+    a(href=("/catalog/movie/"+movie.id) class='active-hyperlink') Cancel
