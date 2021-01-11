@@ -168,12 +168,25 @@ exports.movie_update_post = [
     if (!errors.isEmpty()) {
       // There are errors. Render form again with sanitized values/error messages.
 
-      // Get all authors and genres for form.
-      async.parallel(function (err, results) {
-        if (err) {
-          return next(err);
+      // Get all genres for form.
+      async.parallel(
+        {
+          genres: function (callback) {
+            Genre.find(callback);
+          }
+        },
+        function (err, results) {
+          if (err) {
+            return next(err);
+          }
+          res.render('movie_update', {
+            title: 'Update Movie',
+            genres: results.genres,
+            movie: movie,
+            errors: errors.array()
+          });
         }
-      });
+      );
       return;
     } else {
       // Data from form is valid. Update the record.
@@ -248,12 +261,25 @@ exports.movie_create_post = [
     if (!errors.isEmpty()) {
       // There are errors. Render form again with sanitized values/error messages.
 
-      // Get all authors and genres for form.
-      async.parallel(function (err, results) {
-        if (err) {
-          return next(err);
+      // Get all genres for form.
+      async.parallel(
+        {
+          genres: function (callback) {
+            Genre.find(callback);
+          }
+        },
+        function (err, results) {
+          if (err) {
+            return next(err);
+          }
+          res.render('movie_form', {
+            title: 'Add Movie',
+            genres: results.genres,
+            movie: movie,
+            errors: errors.array()
+          });
         }
-      });
+      );
       return;
     } else {
       // Data from form is valid. Save book.

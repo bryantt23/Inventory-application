@@ -42,5 +42,8 @@ block content
       a(href='/catalog/movies' class='active-hyperlink') See All Movies
     p  
       a(href='/catalog/movie/create' class='active-hyperlink') Add a movie
-
       
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

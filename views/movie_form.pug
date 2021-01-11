@@ -23,3 +23,9 @@ block content
               option(value=genre.id  ) #{genre.name}
 
     input(type='submit', value='Submit')
+
+    
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
